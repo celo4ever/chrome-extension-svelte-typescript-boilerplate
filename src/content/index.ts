@@ -1,5 +1,5 @@
 import Overlay from "../components/Overlay.svelte";
-import { storage } from "../storage";
+import { storage } from "../workSpaceStorage";
 
 // Content scripts
 // https://developer.chrome.com/docs/extensions/mv3/content_scripts/

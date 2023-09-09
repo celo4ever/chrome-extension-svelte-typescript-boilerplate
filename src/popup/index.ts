@@ -1,5 +1,5 @@
 import Options from "../components/Options.svelte";
-import { storage } from "../storage";
+import { storage } from "../workSpaceStorage";
 
 // Action popup
 // https://developer.chrome.com/docs/extensions/reference/action/

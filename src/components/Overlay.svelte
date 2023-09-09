@@ -1,17 +1,13 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { storage } from "../storage";
     import Options from "./Options.svelte";
 
     let count = 0;
 
-    onMount(() => {
-        storage.get().then((storage) => (count = storage.count));
-    });
+
 </script>
 
 <div class="overlay">
-    <Options {count} />
 </div>
 
 <style>

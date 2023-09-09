@@ -3,12 +3,12 @@
     export let link: string;    
 </script>
 
-<div class="card shadow-lg bg-base-100 rounded-box w-96 h-48">
-    <div class="card-body">
+<div class="card border border-gray-300 rounded-box w-full my-1">
+    <div class="card-body p-5">
         <div class="flex flex-col">
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-col">
-                    <div class="text-2xl font-bold">{name}</div>
+                    <div class="text-xl font-bold">{name}</div>
                     <div class="text-sm">{link}</div>
                 </div>
                 <div class="flex flex-row">
@@ -20,8 +20,8 @@
                     </button>
                 </div>
             </div>
+        </div>
     </div>
-</div>
 </div>
 <style>
     .card {
