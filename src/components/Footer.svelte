@@ -5,10 +5,17 @@
 
 
     let options = [
-        {label: "Share", onclick: downloadWorkspace, icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"},
-        {label: "Delete", onclick: deleteWorkspace, icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"},
+        {label: "Share", onclick: downloadWorkspace,   
+        icon: `<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="m5.953 7.467 6.094-2.612m.096 8.114L5.857 9.676m.305-1.192a2.581 2.581 0 1 1-5.162 0 2.581 2.581 0 0 1 5.162 0ZM17 3.84a2.581 2.581 0 1 1-5.162 0 2.581 2.581 0 0 1 5.162 0Zm0 10.322a2.581 2.581 0 1 1-5.162 0 2.581 2.581 0 0 1 5.162 0Z"/>
+  </svg>`
+        },
+        {label: "Delete", onclick: deleteWorkspace, 
+            icon:`<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+  </svg>`
+        }
     ]
-    
     $: worksSpace = $workSpaceStorage.workspaces[$selectedWorkspace]
 
     let modal : AddLinks; 
@@ -55,21 +62,20 @@
     <div class="footer">
         <div class="flex flex-row w-full gap-1">
             <button class="btn btn-primary grow m-1" on:click={() => modal.openModal()}>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-    
-                Add Link
+                Add Links
             </button>
             <div class="dropdown dropdown-top dropdown-end">
                 <label tabindex="0" class="btn m-1">
                     <!-- Share symbol, social SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-9.95 9.55 1 1 0 00.9 1.05h1.1a1 1 0 001-.9A8 8 0 1112 4a1 1 0 00-1 1v1.5a1 1 0 00.65.93A4.49 4.49 0 0012 11a4.5 4.5 0 004.25-3.05 1 1 0 00-.2-1.1 1 1 0 00-1.1-.2A2.5 2.5 0 1112 8a2.49 2.49 0 012.25 1.45 1 1 0 00.9.55h1.1a1 1 0 001-.9A10 10 0 0012 2z"/></svg>
-                    
-                    Options</label>
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
+                      </svg>                    
+                    </label>
                 <ul tabindex="0"  class="dropdown-content z-[1] menu bg-base-200 w-56 rounded-box">
                     {#each options as option}
                         <li >
                             <a on:click={option.onclick}>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={option.icon} /></svg>
+                                {@html option.icon}
                                 {option.label}
                             </a>
                         </li>
