@@ -45,6 +45,19 @@ const getWorkspace = (id: number) => {
     return defaultWorkspaceStorage.workspaces[id];
 };
 
+const deleteWorkspace = (id: number) => {
+    update((workspaces: IStorageWorkSpaces) => {
+        const updatedWorkspaces = {
+            workspaces: workspaces.workspaces.filter((w) => w.id !== id),
+        };
+
+        chromeStorage.set(updatedWorkspaces);
+        return updatedWorkspaces;
+    });
+};
+
+
+
 const addWorkspace = (workspaceName: string) =>
     update((workspaces: IStorageWorkSpaces) => {
         const workspace: IWorkspace = {
@@ -77,6 +90,67 @@ const addLink = (id: number, link: ILink) =>
         return updatedWorkspaces;        
 });
 
+const addLinks = (id: number, link: ILink[]) =>
+    update((workspaces: IStorageWorkSpaces) => {
+        const workspace = workspaces.workspaces.find((w) => w.id === id);
+        if (!workspace) return workspaces;
+        
+        workspace.links = workspace.links.concat(link);
+
+        const updatedWorkspaces = {
+            workspaces: workspaces.workspaces.map((w) => {
+                if (w.id === id) return workspace;
+                return w;
+            }),
+        };
+
+        chromeStorage.set(updatedWorkspaces);
+        return updatedWorkspaces;        
+    });
+
+    /**
+     * Updates a link in a workspace by id
+     * @param id 
+     * @param link 
+     * @returns 
+     */
+const updateLink = (id_workspace:number, id_link: number, link: ILink) =>
+    update((workspaces: IStorageWorkSpaces) => {
+        const workspace = workspaces.workspaces.find((w) => w.id === id_workspace);
+        if (!workspace) return workspaces;
+
+        workspace.links[id_link] = link;
+
+        const updatedWorkspaces = {
+            workspaces: workspaces.workspaces.map((w) => {
+                if (w.id === id_workspace) return workspace;
+                return w;
+            }),
+        };
+
+        chromeStorage.set(updatedWorkspaces);
+        return updatedWorkspaces;
+    });
+
+const deleteLink = (id_workspace:number, id_link: number) =>
+    update((workspaces: IStorageWorkSpaces) => {
+        const workspace = workspaces.workspaces.find((w) => w.id === id_workspace);
+        if (!workspace) return workspaces;
+
+        workspace.links.splice(id_link, 1);
+
+        const updatedWorkspaces = {
+            workspaces: workspaces.workspaces.map((w) => {
+                if (w.id === id_workspace) return workspace;
+                return w;
+            }),
+        };
+
+        chromeStorage.set(updatedWorkspaces);
+        return updatedWorkspaces;
+    });
+
+
 const importWorkspace = (workspace: IWorkspace) =>
     update((workspaces: IStorageWorkSpaces) => {
         workspace.id = workspaces.workspaces.length;
@@ -90,9 +164,9 @@ const importWorkspace = (workspace: IWorkspace) =>
     });
 
 const reset = () => {
-    chromeStorage.get().then((storage) => {
-        set(storage);
-    });
+    set(defaultWorkspaceStorage);
+    selectedWorkspace.set(0);
+    chromeStorage.clear();
 };
 
 export default {
@@ -100,7 +174,11 @@ export default {
     init,
     addWorkspace,
     getWorkspace,
+    deleteWorkspace,
     addLink,
+    addLinks,
+    updateLink,
+    deleteLink,
     importWorkspace,
     reset,
 };
