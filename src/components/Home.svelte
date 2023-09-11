@@ -8,7 +8,9 @@
     $: worksSpace = $workSpaceStorage.workspaces[$selectedWorkspace]
 
     onMount(() => {
-        console.log($workSpaceStorage.workspaces)
+        console.log($workSpaceStorage.workspaces, 'selectedWorkspace', $selectedWorkspace)
+        // workSpaceStorage.reset();
+
     })
 
 </script>

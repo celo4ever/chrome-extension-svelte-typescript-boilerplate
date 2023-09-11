@@ -72,14 +72,14 @@
                                   </svg>                            </button>
                         </div>
                     {:else}
-                        <div>
-                            <button class="btn  btn-sm" on:click={save}>
-                                <svg class="w-[18px] h-[18px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                        <div class="self-end">
+                            <button class="btn btn-success btn-sm" on:click={save}>
+                                <svg  stroke="currentColor" class="w-[18px] h-[18px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M1 5.917 5.724 10.5 15 1.5"/>
                                   </svg>
                             </button>
-                            <button class="btn  btn-sm btn-outline" on:click={cancel}>
-                                <svg class="w-[18px] h-[18px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
+                            <button class="btn btn-sm btn-outline" on:click={cancel}>
+                                <svg  stroke="currentColor" class="w-[18px] h-[18px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M1 7.5h11m0 0L8 3.786M12 7.5l-4 3.714M12 1h3c.53 0 1.04.196 1.414.544.375.348.586.82.586 1.313v9.286c0 .492-.21.965-.586 1.313A2.081 2.081 0 0 1 15 14h-3"/>
                                   </svg>                                
                             </button>

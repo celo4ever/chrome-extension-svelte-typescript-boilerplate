@@ -19,9 +19,9 @@
     $: worksSpace = $workSpaceStorage.workspaces[$selectedWorkspace]
 
     let modal : AddLinks; 
+    let isopen = false;
 
     function downloadWorkspace() {
-        //Downloads the workspace as a JSON file
         
         //Get the workspace
         let workspace = worksSpace;
@@ -40,21 +40,27 @@
 
         //Remove the blob
         URL.revokeObjectURL(url);
+        toggleDropdown();
     }
 
     function deleteWorkspace() {
         //Deletes the workspace
-        workSpaceStorage.deleteWorkspace($selectedWorkspace);
-
+        // workSpaceStorage.reset();
         //Selects thhe last workspace
         if($workSpaceStorage.workspaces.length > 1) {
-            selectedWorkspace.set($workSpaceStorage.workspaces.length - 1);
+            workSpaceStorage.deleteWorkspace($selectedWorkspace);
+            $selectedWorkspace = $selectedWorkspace - 1;
         }else {
             //If there is no workspace, we reset default
             workSpaceStorage.reset();
         }
+        toggleDropdown();
     }
 
+    function toggleDropdown() {
+        isopen = !isopen;
+    }
+ 
 </script>
 
 <div class="container">
@@ -64,23 +70,23 @@
             <button class="btn btn-primary grow m-1" on:click={() => modal.openModal()}>
                 Add Links
             </button>
-            <div class="dropdown dropdown-top dropdown-end">
+            <div class="dropdown dropdown-top dropdown-end" >
                 <label tabindex="0" class="btn m-1">
                     <!-- Share symbol, social SVG -->
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25"/>
                       </svg>                    
                     </label>
-                <ul tabindex="0"  class="dropdown-content z-[1] menu bg-base-200 w-56 rounded-box">
-                    {#each options as option}
-                        <li >
-                            <a on:click={option.onclick}>
-                                {@html option.icon}
-                                {option.label}
-                            </a>
-                        </li>
-                    {/each}
-                </ul>
+                    <ul tabindex="0"  class="dropdown-content z-[1] menu bg-base-200 w-56 rounded-box">
+                        {#each options as option}
+                            <li >
+                                <a on:click={option.onclick}>
+                                    {@html option.icon}
+                                    {option.label}
+                                </a>
+                            </li>
+                        {/each}
+                    </ul>
             </div>
         </div>
     </div>

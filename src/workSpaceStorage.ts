@@ -52,6 +52,7 @@ const deleteWorkspace = (id: number) => {
         };
 
         chromeStorage.set(updatedWorkspaces);
+
         return updatedWorkspaces;
     });
 };

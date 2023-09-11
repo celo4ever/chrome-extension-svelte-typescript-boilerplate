@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import workSpaceStorage, { chromeStorage, selectedWorkspace } from "../workSpaceStorage";
     import CreateWorkspace from "./CreateWorkspace.svelte";
 
@@ -11,6 +12,9 @@
         chromeStorage.setCurrentWorkspace(selected);
     }
 
+    onMount(() => {
+        console.log($workSpaceStorage.workspaces);
+    })
 </script>
 
 <div class="container">
