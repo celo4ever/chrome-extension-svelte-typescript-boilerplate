@@ -24,14 +24,12 @@
 
 </script>
 
-<div class="card border border-gray-300 rounded-box w-full my-1">
+<div class="card rounded-box w-full my-1">
     <div class="collapse">
         <input type="checkbox">
         <!-- <div class="flex flex-col"> -->
             <div class="collapse-title ">
-                <div class="text-lg font-bold">
-                    {name}
-                </div>
+                    <b>{name}</b>
             </div>
             <div class="collapse-content ">
                 <!-- Web SVG icon next to the link -->
@@ -98,6 +96,8 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        background-color: WHITE;
+        border-radius: 8px;
     }
 
 </style>

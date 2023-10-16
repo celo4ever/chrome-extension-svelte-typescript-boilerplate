@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="menu-left">
-        <select class="select select-bordered w-full" bind:value={selected} on:change={selectWorkspace}>
+        <select class="select  w-full " bind:value={selected} on:change={selectWorkspace}>
             {#each $workSpaceStorage.workspaces as workspace}
                 <option  value={workspace.id}>{workspace.name}</option>
             {/each}
